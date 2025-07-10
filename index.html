@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Interview Experience - Bosscoder Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Global Styles & Classy "White and Blue" Theme --- */
+        :root {
+            --background-light: #f4f7f9;
+            --surface-white: #ffffff;
+            --primary-blue: #0056b3;
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+            --border-color: #dfe4ea;
+            --font-body: 'Lato', sans-serif;
+            --font-heading: 'Georgia', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            width: 100%;
+            padding: 50px;
+            background-color: var(--surface-white);
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- Header & Form Description --- */
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--primary-blue);
+            font-size: 2.4em;
+            margin-bottom: 15px;
+        }
+
+        .header-description {
+            font-size: 1.1em;
+            color: var(--text-muted);
+            max-width: 90%;
+            margin: 0 auto 30px auto;
+            line-height: 1.7;
+        }
+
+        /* --- Gamification: Progress Bar (Commented Out) --- */
+        /*.progress-bar {*/
+        /* width: 100%;*/
+        /* background-color: #e9ecef;*/
+        /* border-radius: 5px;*/
+        /* margin-bottom: 40px;*/
+        /* overflow: hidden;*/
+        /* height: 12px;*/
+        /*}*/
+
+        /*.progress-bar-fill {*/
+        /* height: 100%;*/
+        /* width: 50%; /* Initial width for 2 steps */*/
+        /* background-color: var(--primary-blue);*/
+        /* border-radius: 5px;*/
+        /* transition: width 0.4s ease-in-out;*/
+        /*}*/
+
+        .step-indicator {
+            text-align: center;
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        /* --- Form Steps --- */
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Fieldset & Subheading Styling --- */
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 1.6em;
+            font-weight: normal;
+            color: var(--text-dark);
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            font-size: 1em;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        /* --- Form Elements Styling --- */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 0.95em;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            background-color: #fdfdfd;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-dark);
+            font-size: 1em;
+            font-family: var(--font-body);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #aaa;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        /* --- Dynamic Round Sections --- */
+        .round-section {
+            border: 1px solid var(--border-color);
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+        .round-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3em;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        /* --- Navigation Buttons --- */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+
+        .nav-btn {
+            padding: 14px 35px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .prev-btn {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+        .prev-btn:hover {
+            background-color: #5a6268;
+        }
+        .next-btn, .submit-btn {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+        }
+        .next-btn:hover, .submit-btn:hover {
+            background-color: #004494;
+            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="form-header">
+            <img src="https://i.postimg.cc/J0BP8Q6V/image-5.png" alt="Bosscoder Academy Logo" class="logo">
+            <h1>Share Your Interview Experience</h1>
+            <p class="header-description">
+                Your story is powerful. By sharing your interview experience, you provide invaluable insights that help the entire Bosscoder community prepare, learn, and succeed.
+            </p>
+        </header>
+
+        <!-- <div class="step-indicator" id="stepIndicator">1/2</div> -->
+
+        <form id="interviewForm" action="#" method="POST">
+            <div class="form-step active" id="step1">
+                <fieldset>
+                    <h2>Your Profile</h2>
+                    <p class="section-description">Let's start with some basic information about you.</p>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Years of Experience</label>
+                        <input type="number" id="experience" name="experience" placeholder="e.g., 2" min="0" required>
+                    </div>
+
+                    <h2>The Opportunity</h2>
+                    <p class="section-description">Now, tell us about the interview you attended.</p>
+
+                    <div class="form-group">
+                        <label for="companyName">Company Name</label>
+                        <input type="text" id="companyName" name="companyName" placeholder="e.g., Google, Microsoft, Amazon" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role / Position</label>
+                        <input type="text" id="role" name="role" placeholder="e.g., SDE-2, Data Analyst" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interviewDate">Interview Date (Month & Year)</label>
+                        <input type="month" id="interviewDate" name="interviewDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="result">Final Result</label>
+                        <select id="result" name="result" required>
+                            <option value="" disabled selected>Select the outcome...</option>
+                            <option value="selected">Accepted Offer</option>
+                            <option value="offer_declined">Received Offer, but Declined</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="numRounds">Total Number of Rounds</label>
+                        <select id="numRounds" name="numRounds" required>
+                            <option value="" disabled selected>Select number of rounds...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="form-step" id="step2">
+                <fieldset>
+                    <h2>Round-by-Round Breakdown</h2>
+                    <p class="section-description">Please detail each stage of the interview process. Your insights here are the most valuable part.</p>
+
+                    <div id="roundsContainer">
+                        <p style="color: var(--text-muted); font-style: italic;">Please go back to Step 1 and select the number of rounds to see the fields here.</p>
+                    </div>
+
+                    <h2 style="margin-top: 40px;">Share Your Wisdom</h2>
+                    <p class="section-description">What final advice or key takeaways would you offer to fellow aspirants?</p>
+                     <div class="form-group">
+                        <label for="finalThoughts">Tips, Suggestions, or Final Thoughts</label>
+                        <textarea id="finalThoughts" name="finalThoughts" placeholder="e.g., Key topics to focus on, resources you used, or your overall feeling about the process." required></textarea>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="nav-buttons">
+                <button type="button" class="nav-btn prev-btn" id="prevBtn" style="display: none;">Previous</button>
+                <button type="button" class="nav-btn next-btn" id="nextBtn">Next</button>
+                <button type="submit" class="nav-btn submit-btn" id="submitBtn" style="display: none;">Submit Experience</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = Array.from(document.querySelectorAll('.form-step'));
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            const stepIndicator = document.getElementById('stepIndicator');
+            const numRoundsSelect = document.getElementById('numRounds');
+            const roundsContainer = document.getElementById('roundsContainer');
+
+            let currentStep = 0;
+            const totalSteps = steps.length;
+
+            function updateFormState() {
+                // Update Step Visibility
+                steps.forEach((step, index) => {
+                    step.classList.toggle('active', index === currentStep);
+                });
+
+                // Update Step Indicator
+                stepIndicator.textContent = `${currentStep + 1}/${totalSteps}`;
+
+                // Update Button Visibility
+                prevBtn.style.display = currentStep > 0 ? 'inline-block' : 'none';
+                nextBtn.style.display = currentStep < totalSteps - 1 ? 'inline-block' : 'none';
+                submitBtn.style.display = currentStep === totalSteps - 1 ? 'inline-block' : 'none';
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (currentStep < totalSteps - 1) {
+                    currentStep++;
+                    updateFormState();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 0) {
+                    currentStep--;
+                    updateFormState();
+                }
+            });
+
+            numRoundsSelect.addEventListener('change', function() {
+                const numRounds = parseInt(this.value, 10);
+                roundsContainer.innerHTML = ''; // Clear previous fields
+
+                if (isNaN(numRounds) || numRounds < 1) {
+                    roundsContainer.innerHTML = `<p style="color: var(--text-muted); font-style: italic;">Please select the number of rounds to proceed.</p>`;
+                    return;
+                };
+
+                for (let i = 1; i <= numRounds; i++) {
+                    const roundSection = document.createElement('div');
+                    roundSection.className = 'round-section';
+                    roundSection.innerHTML = `
+                        <h3>Round ${i}</h3>
+                        <div class="form-group">
+                            <label for="roundType${i}">Round Type</label>
+                            <select id="roundType${i}" name="roundType${i}" required>
+                                <option value="" disabled selected>Select round type...</option>
+                                <option value="Online Assessment">Online Assessment</option>
+                                <option value="Phone Screen">Technical Phone Screen</option>
+                                <option value="Onsite - DSA">Onsite - DSA/Coding</option>
+                                <option value="Onsite - System Design">Onsite - System Design</option>
+                                <option value="Onsite - Managerial">Onsite - Managerial</option>
+                                <option value="HR Round">HR Round</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="roundDesc${i}">Round Description & Questions Asked</label>
+                            <textarea id="roundDesc${i}" name="roundDesc${i}" rows="5" placeholder="Describe the round, questions asked, and your approach..." required></textarea>
+                        </div>
+                    `;
+                    roundsContainer.appendChild(roundSection);
+                }
+            });
+
+            // Initial state
+            updateFormState();
+        });
+    </script>
+
+</body>
+</html>
