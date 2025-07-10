@@ -21,7 +21,7 @@
             --font-heading: 'Georgia', serif;
         }
         body { font-family: var(--font-body); background-color: var(--background-light); color: var(--text-dark); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .container { max-width: 850px; width: 100%; padding: 50px; background-color: var(--surface-white); border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); border: 1px solid var(--border-color); }
+        .container { max-width: 650px; width: 100%; padding: 50px; background-color: var(--surface-white); border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); border: 1px solid var(--border-color); }
         .form-header { text-align: center; margin-bottom: 30px; }
         .logo { width: 200px; height: auto; margin-bottom: 20px; }
         h1 { font-family: var(--font-heading); color: var(--primary-blue); font-size: 2.4em; margin-bottom: 15px; }
@@ -38,11 +38,36 @@
         label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.95em; }
         .textarea-wrapper { position: relative; }
         input, select, textarea { width: 100%; padding: 14px; background-color: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-dark); font-size: 1em; font-family: var(--font-body); transition: border-color 0.3s, box-shadow 0.3s; }
-        input::placeholder, textarea::placeholder { color: #aaa; }
+        input::placeholder, textarea::placeholder {
+            color: #aaa;
+            font-size: 0.85em; /* Reduced font size for placeholder text */
+        }
         input:focus, select:focus, textarea:focus { outline: none; border-color: #80bdff; box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); }
-        textarea { resize: vertical; min-height: 140px; padding-bottom: 30px; }
-        .round-section { border: 1px solid var(--border-color); background-color: #f8f9fa; border-radius: 8px; padding: 25px; margin-top: 25px; }
+        textarea {
+            resize: vertical;
+            min-height: 140px;
+            padding-bottom: 30px;
+            padding-left: 10px;
+        }
+        .round-section { border: 1px solid var(--border-color); background-color: #f8f9fa; border-radius: 8px; padding: 25px 30px 25px 30px; margin-top: 30px; margin-bottom: 0; width: 100%; box-sizing: border-box; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-direction: column; gap: 18px; }
         .round-section h3 { font-family: var(--font-heading); font-size: 1.3em; color: var(--primary-blue); margin-bottom: 20px; }
+        .round-section .form-group {
+            margin-bottom: 0;
+            padding: 0;
+        }
+        .round-section .textarea-wrapper,
+        .round-section input,
+        .round-section select,
+        .round-section textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: 10px;
+            padding-right: 0;
+        }
+        .round-section .textarea-wrapper {
+            padding: 0;
+            margin: 0;
+        }
         .error-message { position: absolute; bottom: 8px; right: 10px; color: var(--error-red); font-size: 0.85em; background-color: rgba(255, 255, 255, 0.7); padding: 2px 5px; border-radius: 3px; display: none; }
         textarea.error { border-color: var(--error-red); box-shadow: 0 0 0 0.2rem rgba(217, 48, 37, 0.25); }
         .nav-buttons { display: flex; justify-content: flex-end; margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 30px; gap: 15px; }
@@ -58,6 +83,34 @@
         .modal-content h2 { color: var(--primary-blue); font-family: var(--font-heading); margin-top: 0; }
         .close-button { color: #aaa; position: absolute; top: 15px; right: 25px; font-size: 28px; font-weight: bold; transition: color 0.3s; }
         .close-button:hover, .close-button:focus { color: #333; text-decoration: none; cursor: pointer; }
+        #roundsContainer {
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: 20px;
+        }
+        .round-section {
+            border: 1px solid var(--border-color);
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px 30px 25px 30px;
+            margin-top: 30px;
+            margin-bottom: 24px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .round-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3em;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        .round-section .form-group {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -131,12 +184,14 @@
                     <p class="section-description">Please detail each stage of the interview process. Your insights here are the most valuable part.</p>
                     <div id="roundsContainer"><p style="color: var(--text-muted); font-style: italic;">Please go back to Step 1 and select the number of rounds to see the fields here.</p></div>
                     
-                    <h2 style="margin-top: 40px;">Share Your Wisdom (Optional)</h2>
-                    <p class="section-description">What final advice or key takeaways would you offer to fellow aspirants?</p>
-                     <div class="form-group">
-                        <label for="finalThoughts">Tips, Suggestions, or Final Thoughts</label>
-                        <div class="textarea-wrapper">
-                            <textarea id="finalThoughts" name="finalThoughts" placeholder="e.g., Key topics to focus on, resources you used, or your overall feeling about the process."></textarea>
+                    <div class="round-section">
+                        <h2 style="margin-top: 0;">Share Your Wisdom (Optional)</h2>
+                        <p class="section-description">What final advice or key takeaways would you offer to fellow aspirants?</p>
+                        <div class="form-group">
+                            <label for="finalThoughts">Tips, Suggestions, or Final Thoughts</label>
+                            <div class="textarea-wrapper">
+                                <textarea id="finalThoughts" name="finalThoughts" placeholder="e.g., Key topics to focus on, resources you used, or your overall feeling about the process."></textarea>
+                            </div>
                         </div>
                     </div>
                 </fieldset>
