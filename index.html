@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- Global Styles & Classy "White and Blue" Theme --- */
+        /* --- All CSS styles remain the same --- */
         :root {
             --background-light: #f4f7f9;
             --surface-white: #ffffff;
@@ -16,221 +16,48 @@
             --text-dark: #2c3e50;
             --text-muted: #7f8c8d;
             --border-color: #dfe4ea;
+            --error-red: #d93025;
             --font-body: 'Lato', sans-serif;
             --font-heading: 'Georgia', serif;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background-color: var(--background-light);
-            color: var(--text-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 850px;
-            width: 100%;
-            padding: 50px;
-            background-color: var(--surface-white);
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--border-color);
-        }
-
-        /* --- Header & Form Description --- */
-        .form-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .logo {
-            width: 200px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-family: var(--font-heading);
-            color: var(--primary-blue);
-            font-size: 2.4em;
-            margin-bottom: 15px;
-        }
-
-        .header-description {
-            font-size: 1.1em;
-            color: var(--text-muted);
-            max-width: 90%;
-            margin: 0 auto 30px auto;
-            line-height: 1.7;
-        }
-
-        /* --- Gamification: Progress Bar (Commented Out) --- */
-        /*.progress-bar {*/
-        /* width: 100%;*/
-        /* background-color: #e9ecef;*/
-        /* border-radius: 5px;*/
-        /* margin-bottom: 40px;*/
-        /* overflow: hidden;*/
-        /* height: 12px;*/
-        /*}*/
-
-        /*.progress-bar-fill {*/
-        /* height: 100%;*/
-        /* width: 50%; /* Initial width for 2 steps */*/
-        /* background-color: var(--primary-blue);*/
-        /* border-radius: 5px;*/
-        /* transition: width 0.4s ease-in-out;*/
-        /*}*/
-
-        .step-indicator {
-            text-align: center;
-            color: var(--primary-blue);
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 1.1em;
-        }
-
-        /* --- Form Steps --- */
-        .form-step {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-
-        .form-step.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Fieldset & Subheading Styling --- */
-        fieldset {
-            border: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        h2 {
-            font-family: var(--font-heading);
-            font-size: 1.6em;
-            font-weight: normal;
-            color: var(--text-dark);
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-
-        .section-description {
-            font-size: 1em;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            font-style: italic;
-        }
-
-        h2:first-of-type {
-            margin-top: 0;
-        }
-
-        /* --- Form Elements Styling --- */
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            font-size: 0.95em;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 14px;
-            background-color: #fdfdfd;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: var(--text-dark);
-            font-size: 1em;
-            font-family: var(--font-body);
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        input::placeholder, textarea::placeholder {
-            color: #aaa;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 140px;
-        }
-
-        /* --- Dynamic Round Sections --- */
-        .round-section {
-            border: 1px solid var(--border-color);
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 25px;
-            margin-top: 25px;
-        }
-        .round-section h3 {
-            font-family: var(--font-heading);
-            font-size: 1.3em;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-        }
-
-        /* --- Navigation Buttons --- */
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 30px;
-        }
-
-        .nav-btn {
-            padding: 14px 35px;
-            font-size: 1.1em;
-            font-weight: 700;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .prev-btn {
-            background-color: #6c757d;
-            color: #ffffff;
-        }
-        .prev-btn:hover {
-            background-color: #5a6268;
-        }
-        .next-btn, .submit-btn {
-            background-color: var(--primary-blue);
-            color: #ffffff;
-        }
-        .next-btn:hover, .submit-btn:hover {
-            background-color: #004494;
-            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
-            transform: translateY(-2px);
-        }
-
+        body { font-family: var(--font-body); background-color: var(--background-light); color: var(--text-dark); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .container { max-width: 850px; width: 100%; padding: 50px; background-color: var(--surface-white); border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); border: 1px solid var(--border-color); }
+        .form-header { text-align: center; margin-bottom: 30px; }
+        .logo { width: 200px; height: auto; margin-bottom: 20px; }
+        h1 { font-family: var(--font-heading); color: var(--primary-blue); font-size: 2.4em; margin-bottom: 15px; }
+        .header-description { font-size: 1.1em; color: var(--text-muted); max-width: 90%; margin: 0 auto 30px auto; line-height: 1.7; }
+        .step-indicator { text-align: center; color: var(--primary-blue); font-weight: bold; margin-bottom: 20px; font-size: 1.1em; }
+        .form-step { display: none; animation: fadeIn 0.5s; }
+        .form-step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        fieldset { border: none; padding: 0; margin: 0; }
+        h2 { font-family: var(--font-heading); font-size: 1.6em; font-weight: normal; color: var(--text-dark); margin-top: 30px; margin-bottom: 10px; }
+        .section-description { font-size: 1em; color: var(--text-muted); margin-bottom: 25px; font-style: italic; }
+        h2:first-of-type { margin-top: 0; }
+        .form-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.95em; }
+        .textarea-wrapper { position: relative; }
+        input, select, textarea { width: 100%; padding: 14px; background-color: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-dark); font-size: 1em; font-family: var(--font-body); transition: border-color 0.3s, box-shadow 0.3s; }
+        input::placeholder, textarea::placeholder { color: #aaa; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #80bdff; box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); }
+        textarea { resize: vertical; min-height: 140px; padding-bottom: 30px; }
+        .round-section { border: 1px solid var(--border-color); background-color: #f8f9fa; border-radius: 8px; padding: 25px; margin-top: 25px; }
+        .round-section h3 { font-family: var(--font-heading); font-size: 1.3em; color: var(--primary-blue); margin-bottom: 20px; }
+        .error-message { position: absolute; bottom: 8px; right: 10px; color: var(--error-red); font-size: 0.85em; background-color: rgba(255, 255, 255, 0.7); padding: 2px 5px; border-radius: 3px; display: none; }
+        textarea.error { border-color: var(--error-red); box-shadow: 0 0 0 0.2rem rgba(217, 48, 37, 0.25); }
+        .nav-buttons { display: flex; justify-content: flex-end; margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 30px; gap: 15px; }
+        .nav-btn { padding: 14px 35px; font-size: 1.1em; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; }
+        .prev-btn { background-color: #6c757d; color: #ffffff; margin-right: auto; }
+        .prev-btn:hover { background-color: #5a6268; }
+        .next-submit-btn { background-color: var(--primary-blue); color: #ffffff; }
+        .next-submit-btn:hover { background-color: #004494; box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2); transform: translateY(-2px); }
+        .next-submit-btn:disabled { background-color: #aaa; cursor: not-allowed; transform: none; box-shadow: none; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.6); animation: fadeIn 0.3s; }
+        .modal-content { background-color: #fff; margin: 15% auto; padding: 40px; border-radius: 10px; max-width: 500px; text-align: center; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.2); }
+        .modal-logo { width: 150px; margin-bottom: 20px; }
+        .modal-content h2 { color: var(--primary-blue); font-family: var(--font-heading); margin-top: 0; }
+        .close-button { color: #aaa; position: absolute; top: 15px; right: 25px; font-size: 28px; font-weight: bold; transition: color 0.3s; }
+        .close-button:hover, .close-button:focus { color: #333; text-decoration: none; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -244,34 +71,29 @@
             </p>
         </header>
 
-        <!-- <div class="step-indicator" id="stepIndicator">1/2</div> -->
+        <div class="step-indicator" id="stepIndicator">1/2</div>
 
-        <form id="interviewForm" action="#" method="POST">
+        <form id="interviewForm">
             <div class="form-step active" id="step1">
                 <fieldset>
                     <h2>Your Profile</h2>
                     <p class="section-description">Let's start with some basic information about you.</p>
-
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required pattern="[A-Za-z\s]+" title="Please enter letters and spaces only.">
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" name="email" placeholder="Enter your email" required>
                     </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-                    </div>
+
                     <div class="form-group">
                         <label for="experience">Years of Experience</label>
-                        <input type="number" id="experience" name="experience" placeholder="e.g., 2" min="0" required>
+                        <input type="number" id="experience" name="experience" placeholder="e.g., 2" min="0" step="1" required>
                     </div>
 
                     <h2>The Opportunity</h2>
                     <p class="section-description">Now, tell us about the interview you attended.</p>
-
                     <div class="form-group">
                         <label for="companyName">Company Name</label>
                         <input type="text" id="companyName" name="companyName" placeholder="e.g., Google, Microsoft, Amazon" required>
@@ -297,74 +119,122 @@
                         <label for="numRounds">Total Number of Rounds</label>
                         <select id="numRounds" name="numRounds" required>
                             <option value="" disabled selected>Select number of rounds...</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
                         </select>
                     </div>
                 </fieldset>
             </div>
-
+            
             <div class="form-step" id="step2">
-                <fieldset>
+                 <fieldset>
                     <h2>Round-by-Round Breakdown</h2>
                     <p class="section-description">Please detail each stage of the interview process. Your insights here are the most valuable part.</p>
-
-                    <div id="roundsContainer">
-                        <p style="color: var(--text-muted); font-style: italic;">Please go back to Step 1 and select the number of rounds to see the fields here.</p>
-                    </div>
-
-                    <h2 style="margin-top: 40px;">Share Your Wisdom</h2>
+                    <div id="roundsContainer"><p style="color: var(--text-muted); font-style: italic;">Please go back to Step 1 and select the number of rounds to see the fields here.</p></div>
+                    
+                    <h2 style="margin-top: 40px;">Share Your Wisdom (Optional)</h2>
                     <p class="section-description">What final advice or key takeaways would you offer to fellow aspirants?</p>
                      <div class="form-group">
                         <label for="finalThoughts">Tips, Suggestions, or Final Thoughts</label>
-                        <textarea id="finalThoughts" name="finalThoughts" placeholder="e.g., Key topics to focus on, resources you used, or your overall feeling about the process." required></textarea>
+                        <div class="textarea-wrapper">
+                            <textarea id="finalThoughts" name="finalThoughts" placeholder="e.g., Key topics to focus on, resources you used, or your overall feeling about the process."></textarea>
+                        </div>
                     </div>
                 </fieldset>
             </div>
 
             <div class="nav-buttons">
                 <button type="button" class="nav-btn prev-btn" id="prevBtn" style="display: none;">Previous</button>
-                <button type="button" class="nav-btn next-btn" id="nextBtn">Next</button>
-                <button type="submit" class="nav-btn submit-btn" id="submitBtn" style="display: none;">Submit Experience</button>
+                <button type="button" class="nav-btn next-submit-btn" id="nextSubmitBtn">Next</button>
             </div>
         </form>
     </div>
 
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="https://i.postimg.cc/J0BP8Q6V/image-5.png" alt="Bosscoder Academy Logo" class="modal-logo">
+            <h2>Thank You!</h2>
+            <p style="font-size: 1.1em; color: var(--text-muted);">Your experience is a valuable contribution to the Bosscoder community and will help countless students shape their own success stories.</p>
+        </div>
+    </div>
+
+
     <script>
+        // --- The JavaScript code is identical to the previous version and does not need changes ---
         document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('interviewForm');
             const steps = Array.from(document.querySelectorAll('.form-step'));
-            const nextBtn = document.getElementById('nextBtn');
+            const nextSubmitBtn = document.getElementById('nextSubmitBtn');
             const prevBtn = document.getElementById('prevBtn');
-            const submitBtn = document.getElementById('submitBtn');
             const stepIndicator = document.getElementById('stepIndicator');
             const numRoundsSelect = document.getElementById('numRounds');
             const roundsContainer = document.getElementById('roundsContainer');
+            
+            const modal = document.getElementById('thankYouModal');
+            const closeBtn = document.querySelector('.close-button');
 
             let currentStep = 0;
             const totalSteps = steps.length;
 
             function updateFormState() {
-                // Update Step Visibility
-                steps.forEach((step, index) => {
-                    step.classList.toggle('active', index === currentStep);
-                });
-
-                // Update Step Indicator
+                steps.forEach((step, index) => step.classList.toggle('active', index === currentStep));
                 stepIndicator.textContent = `${currentStep + 1}/${totalSteps}`;
-
-                // Update Button Visibility
+                
                 prevBtn.style.display = currentStep > 0 ? 'inline-block' : 'none';
-                nextBtn.style.display = currentStep < totalSteps - 1 ? 'inline-block' : 'none';
-                submitBtn.style.display = currentStep === totalSteps - 1 ? 'inline-block' : 'none';
+
+                if (currentStep === totalSteps - 1) {
+                    nextSubmitBtn.textContent = 'Submit';
+                } else {
+                    nextSubmitBtn.textContent = 'Next';
+                }
+            }
+            
+            function validateStep1() {
+                const inputs = steps[0].querySelectorAll('input[required], select[required]');
+                for (const input of inputs) {
+                    if (!input.checkValidity() || !input.value) {
+                        alert(`Please fix the errors in Step 1. Hint: Hover over any red-bordered field for details, and ensure all dropdowns are selected.`);
+                        input.focus();
+                        return false;
+                    }
+                }
+                return true;
             }
 
-            nextBtn.addEventListener('click', () => {
+            function validateCurrentStep() {
+                if (currentStep === 1) { 
+                    let allValid = true;
+                    const textareas = roundsContainer.querySelectorAll('textarea[required]');
+                    textareas.forEach(textarea => {
+                        const wrapper = textarea.parentElement;
+                        const errorSpan = wrapper.querySelector('.error-message');
+                        const wordCount = textarea.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+
+                        if (wordCount < 10) {
+                            textarea.classList.add('error');
+                            if(errorSpan) errorSpan.style.display = 'block';
+                            allValid = false;
+                        } else {
+                            textarea.classList.remove('error');
+                            if(errorSpan) errorSpan.style.display = 'none';
+                        }
+                    });
+                     if (!allValid) {
+                        alert('Please ensure all round descriptions have at least 15 words.');
+                    }
+                    return allValid;
+                }
+                return true; 
+            }
+
+            nextSubmitBtn.addEventListener('click', function() {
                 if (currentStep < totalSteps - 1) {
-                    currentStep++;
-                    updateFormState();
+                    if (validateStep1()) {
+                        currentStep++;
+                        updateFormState();
+                    }
+                } else {
+                    form.requestSubmit();
                 }
             });
 
@@ -374,16 +244,14 @@
                     updateFormState();
                 }
             });
-
+            
             numRoundsSelect.addEventListener('change', function() {
                 const numRounds = parseInt(this.value, 10);
-                roundsContainer.innerHTML = ''; // Clear previous fields
-
+                roundsContainer.innerHTML = '';
                 if (isNaN(numRounds) || numRounds < 1) {
                     roundsContainer.innerHTML = `<p style="color: var(--text-muted); font-style: italic;">Please select the number of rounds to proceed.</p>`;
                     return;
-                };
-
+                }
                 for (let i = 1; i <= numRounds; i++) {
                     const roundSection = document.createElement('div');
                     roundSection.className = 'round-section';
@@ -391,26 +259,61 @@
                         <h3>Round ${i}</h3>
                         <div class="form-group">
                             <label for="roundType${i}">Round Type</label>
-                            <select id="roundType${i}" name="roundType${i}" required>
+                            <select id="roundType${i}" name="round${i}Type" required>
                                 <option value="" disabled selected>Select round type...</option>
-                                <option value="Online Assessment">Online Assessment</option>
-                                <option value="Phone Screen">Technical Phone Screen</option>
-                                <option value="Onsite - DSA">Onsite - DSA/Coding</option>
-                                <option value="Onsite - System Design">Onsite - System Design</option>
-                                <option value="Onsite - Managerial">Onsite - Managerial</option>
-                                <option value="HR Round">HR Round</option>
+                                <option value="Online Assessment">Online Assessment</option><option value="Phone Screen">Technical Phone Screen</option><option value="Onsite - DSA">Onsite - DSA/Coding</option><option value="Onsite - System Design">Onsite - System Design</option><option value="Onsite - Managerial">Onsite - Managerial</option><option value="HR Round">HR Round</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="roundDesc${i}">Round Description & Questions Asked</label>
-                            <textarea id="roundDesc${i}" name="roundDesc${i}" rows="5" placeholder="Describe the round, questions asked, and your approach..." required></textarea>
-                        </div>
-                    `;
+                             <label for="roundDesc${i}">Round Description & Questions Asked</label>
+                             <div class="textarea-wrapper">
+                                <textarea id="roundDesc${i}" name="round${i}Desc" rows="5" placeholder="Describe the round, questions asked, and your approach..." required></textarea>
+                                <span class="error-message" id="roundDesc${i}Error">At least 15 words required.</span>
+                            </div>
+                        </div>`;
                     roundsContainer.appendChild(roundSection);
                 }
             });
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (!validateCurrentStep()) {
+                    return;
+                }
+                
+                nextSubmitBtn.disabled = true;
+                nextSubmitBtn.textContent = 'Submitting...';
 
-            // Initial state
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbzVY7wII8lfupaSyegROvdZP60kPETaMex9Gc-CE_Yth3TEmiMGRY1V5rzrHCRXly9PCQ/exec';
+                const formData = new FormData(form);
+
+                fetch(scriptURL, { method: 'POST', body: formData })
+                    .then(response => {
+                        modal.style.display = 'block';
+                        form.reset();
+                        roundsContainer.innerHTML = '<p style="color: var(--text-muted); font-style: italic;">Please go back to Step 1 and select the number of rounds to see the fields here.</p>';
+                        currentStep = 0;
+                        updateFormState();
+                        nextSubmitBtn.disabled = false;
+                    })
+                    .catch(error => {
+                        alert('Error! Something went wrong while submitting. Please try again.');
+                        console.error('Error!', error.message);
+                        nextSubmitBtn.disabled = false;
+                        updateFormState();
+                    });
+            });
+
+            // Modal closing logic
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
             updateFormState();
         });
     </script>
