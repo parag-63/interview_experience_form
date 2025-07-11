@@ -317,7 +317,10 @@
                             <select id="roundType${i}" name="round${i}Type" required>
                                 <option value="" disabled selected>Select round type...</option>
                                 <option value="Online Assessment">Online Assessment</option><option value="Phone Screen">Technical Phone Screen</option><option value="Onsite - DSA">Onsite - DSA/Coding</option><option value="Onsite - System Design">Onsite - System Design</option><option value="Onsite - Managerial">Onsite - Managerial</option><option value="HR Round">HR Round</option>
+                                <option value="Other">Other (please specify)</option>
                             </select>
+                            <input type="text" id="roundTypeOther${i}" name="round${i}TypeOther" placeholder="Enter custom round type" style="display:none; margin-top:8px;" />
+                            <input type="hidden" id="roundTypeHidden${i}" name="round${i}TypeHidden" />
                         </div>
                         <div class="form-group">
                              <label for="roundDesc${i}">Round Description & Questions Asked</label>
@@ -327,6 +330,23 @@
                             </div>
                         </div>`;
                     roundsContainer.appendChild(roundSection);
+
+                    // Add event listener for the select to show/hide the custom input
+                    setTimeout(() => {
+                        const select = document.getElementById(`roundType${i}`);
+                        const otherInput = document.getElementById(`roundTypeOther${i}`);
+                        const hiddenInput = document.getElementById(`roundTypeHidden${i}`);
+                        select.addEventListener('change', function() {
+                            if (this.value === 'Other') {
+                                otherInput.style.display = 'block';
+                                otherInput.required = true;
+                            } else {
+                                otherInput.style.display = 'none';
+                                otherInput.required = false;
+                                otherInput.value = '';
+                            }
+                        });
+                    }, 0);
                 }
             });
             
@@ -334,6 +354,30 @@
                 e.preventDefault();
                 if (!validateCurrentStep()) {
                     return;
+                }
+                // Before submit, handle custom round type for each round
+                const numRounds = parseInt(numRoundsSelect.value, 10);
+                const selectsToRestore = [];
+                for (let i = 1; i <= numRounds; i++) {
+                    const select = document.getElementById(`roundType${i}`);
+                    const otherInput = document.getElementById(`roundTypeOther${i}`);
+                    const hiddenInput = document.getElementById(`roundTypeHidden${i}`);
+                    if (select && otherInput && hiddenInput) {
+                        if (select.value === 'Other' && otherInput.value) {
+                            // Use hidden input to submit custom value
+                            hiddenInput.value = otherInput.value;
+                            hiddenInput.name = select.name; // Give hidden input the select's name
+                            selectsToRestore.push({select, name: select.name});
+                            select.removeAttribute('name'); // Remove name from select so it doesn't submit 'Other'
+                        } else {
+                            // Use the selected value
+                            hiddenInput.value = '';
+                            hiddenInput.removeAttribute('name');
+                            if (!select.hasAttribute('name')) {
+                                select.name = `round${i}Type`;
+                            }
+                        }
+                    }
                 }
                 
                 nextSubmitBtn.disabled = true;
@@ -350,12 +394,20 @@
                         currentStep = 0;
                         updateFormState();
                         nextSubmitBtn.disabled = false;
+                        // Restore select names after submit
+                        selectsToRestore.forEach(({select, name}) => {
+                            select.name = name;
+                        });
                     })
                     .catch(error => {
                         alert('Error! Something went wrong while submitting. Please try again.');
                         console.error('Error!', error.message);
                         nextSubmitBtn.disabled = false;
                         updateFormState();
+                        // Restore select names after error
+                        selectsToRestore.forEach(({select, name}) => {
+                            select.name = name;
+                        });
                     });
             });
 
